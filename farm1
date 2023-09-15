@@ -1,0 +1,61 @@
+repeat wait(3) until game:IsLoaded()
+_G.WHlink = "https://discord.com/api/webhooks/1081974833711153172/jUpn7sMMChwju2oqDX-zPBiJe0Kdjj0OJgPVXIFgpf5upv1fDSho64CPywamJzFY9QR5"
+spawn(function()
+    pcall(function()
+        while wait(.2) do
+            pcall(function()
+                if game.PlaceId == 13775256536 then
+                    if game:GetService("Players").LocalPlayer.PlayerGui.Lobby.QueueFrame.Visible == false then
+                        for i,v in pairs(workspace.Lifts:GetChildren()) do
+                            if v.Name == "ToiletHQ" and v.Base.StatusGui.PlayersCount.Text == "0/5" then
+                                if game:GetService("Players").LocalPlayer.PlayerGui.Lobby.QueueFrame.Visible == false then
+                                    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.Base.CFrame
+                                end
+                            end
+                        end
+                    elseif game:GetService("Players").LocalPlayer.PlayerGui.Lobby.QueueFrame.Visible == true then
+                        game:GetService("Players").LocalPlayer.PlayerGui.Lobby.QueueFrame.Start.Size = UDim2.new(8999999488, 8999999488, 8999999488, 8999999488)
+                        wait(.2)
+                        game:GetService("VirtualInputManager"):SendMouseButtonEvent(1, 2, 0, true, game, 1)
+                        game:GetService("VirtualInputManager"):SendMouseButtonEvent(1, 2, 0, false, game, 1)
+                        wait(.2)
+                        game:GetService("Players").LocalPlayer.PlayerGui.Lobby.QueueFrame.Start.Size = UDim2.new(0.2, 0, 0.25, 0)
+                        wait(2)
+						function webhook(_,tag)
+							local request = http_request or request or HttpPost or syn.request
+							request({
+							Url = _G.WHlink,
+							Method = "POST",
+							Headers = {["Content-Type"] = "application/json"},
+							Body = game:GetService("HttpService"):JSONEncode({embeds = {_}, content = tag})})
+						end
+						local data = {
+						["title"] = "เหรียญพ่อมึง By Sort",
+						["type"] = "rich",
+						["thumbnail"] = {
+						["url"] = nil
+						},
+						["description"] = "UserName: ".."**"..game.Players.LocalPlayer.Name.."**".."\n".."Coin: ".."**"..game:GetService("Players").LocalPlayer.PlayerGui.Lobby.CoinsFrame.CoinAmount.CoinAmount.Text.."**",
+						["fields"] = {},
+						["timestamp"] = DateTime.now():ToIsoDate()}
+						webhook(data)
+						wait(60)
+                    end
+                elseif game.PlaceId == 14082129854 then
+                    if tostring(game:GetService("Players").LocalPlayer.PlayerGui.Match.TopFrame.AutoSkip.OnAndOff.BackgroundColor3) == "1, 0, 0" then
+                        game:GetService("Players").LocalPlayer.PlayerGui.Match.TopFrame.AutoSkip.OnAndOff.Size = UDim2.new(8999999488, 8999999488, 8999999488, 8999999488)
+                        wait(.2)
+                        game:GetService("VirtualInputManager"):SendMouseButtonEvent(1, 2, 0, true, game, 1)
+                        game:GetService("VirtualInputManager"):SendMouseButtonEvent(1, 2, 0, false, game, 1) 
+                        wait(.2)
+                        game:GetService("Players").LocalPlayer.PlayerGui.Match.TopFrame.AutoSkip.OnAndOff.Size = UDim2.new(0.2, 0, 0.25, 0)
+                    end
+                end
+            end)
+        end
+    end)
+end)
+game:GetService("Players").LocalPlayer.Idled:connect(function()
+    game:GetService("VirtualUser"):CaptureController()
+    game:GetService("VirtualUser"):ClickButton2(Vector2.new())
+end)
